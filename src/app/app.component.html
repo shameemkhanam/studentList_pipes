@@ -12,8 +12,9 @@
       <td>{{st.name}}</td>
       <td>{{st.course}}</td>
       <td>{{st.marks}}</td>
+      <td>{{st.marks | percentage: totalMarks :2}}</td>
       <!-- <td>{{st.marks / totalMarks | percent:'1.2-3'}}</td> -->
-      <td>{{st.marks / totalMarks | currency:'INR'}}</td>
+      <!-- <td>{{st.marks / totalMarks | currency:'INR'}}</td> -->
       <!-- <td>{{st.dob | date: 'fullDate'}}</td> https://angular.io/api/common/DatePipe -->
       <td>{{st.dob | date: 'fullDate' | uppercase}}</td> <!--https://angular.io/api/common/DatePipe-->
       <td>{{st.gender | uppercase}}</td>
