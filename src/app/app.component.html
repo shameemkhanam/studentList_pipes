@@ -1,4 +1,12 @@
 <div class="container">
+  <div>
+    Filter by gender : <input type="text" 
+    placeholder="Search" 
+    style="width: 450px; padding: 2px 20px; margin: 10px 0px; height: 30px;" [(ngModel)]="filterText">
+  </div>
+  <div>
+    <h3>Total Students: {{totalStudents | async}}</h3>
+  </div>
   <table id="student" border="0.5px ">
     <tr>
       <th>Name</th>
@@ -8,7 +16,8 @@
       <th>DOB</th>
       <th>Gender</th>
     </tr>
-    <tr *ngFor="let st of students">
+    <!-- <tr *ngFor= " let st of students | filterStudent :filterText "> -->
+    <tr *ngFor= " let st of filteredStudents">
       <td>{{st.name}}</td>
       <td>{{st.course}}</td>
       <td>{{st.marks}}</td>

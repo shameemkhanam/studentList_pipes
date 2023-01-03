@@ -12,11 +12,39 @@ export class AppComponent implements OnInit{
   title = 'AngularPipes';
   students: Student[];
   totalMarks: number;
+  _filterText: string = '';
+  filteredStudents: Student[];
+  totalStudents = new Promise((resolve, reject) => { //here v r assigning async data to totalStudents property, which will be assigned total no. of students after 2secs.
+    setTimeout(() => {
+      resolve(this.filteredStudents.length);
+    }, 2000);
+  });
+
+  get filterText() {
+    return this._filterText;
+  }
+
+  set filterText(value: string) {
+    this._filterText = value;
+    this.filteredStudents = this.filterStudentByGender(value);
+  }
 
   constructor(private studentService: StudentService) { }
   
   ngOnInit(): void {
     this.students = this.studentService.students;
     this.totalMarks = this.studentService.totalMarks;
+    this.filteredStudents = this.students;
+  }
+
+  filterStudentByGender(filterTerm:string) {
+    if (this.students.length === 0 || this.filterText == '') {
+      return this.students;
+    }
+    else {
+      return this.students.filter((student) => {
+        return student.gender.toLowerCase() === filterTerm.toLowerCase();
+      });
+    }
   }
 }
